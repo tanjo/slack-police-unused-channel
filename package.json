@@ -1,0 +1,15 @@
+{
+  "name": "slack-police-unused-channel",
+  "version": "1.0.0",
+  "description": "未使用のチャンネルをリストアップします",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "tanjo",
+  "license": "MIT",
+  "dependencies": {
+    "sync-request": "^4.0.2"
+  },
+  "private": true
+}
