@@ -2,9 +2,7 @@ var fs = require('fs');
 var request = require('sync-request');
 var token = require('./token');
 
-console.log(token.value);
-
-fs.writeFileSync('./data.json', request('GET', "https://slack.com/api/channels.list?token=" + token.value + "&exclude_archived=true"));
+fs.writeFileSync('./data.json', request('GET', "https://slack.com/api/channels.list?token=" + token.value + "&exclude_archived=true").getBody().toString());
 
 var data = require('./data.json');
 
