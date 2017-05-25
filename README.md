@@ -8,11 +8,13 @@
 npm install
 ```
 
-### token.json
+### config.json
 
 ```
 {
-  "value": "ここにトークン"
+  "value": "ここにトークン",
+  "date": "2017/01/01",
+  "log": false
 }
 ```
 
