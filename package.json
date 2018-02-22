@@ -10,7 +10,6 @@
   "author": "tanjo",
   "license": "MIT",
   "dependencies": {
-    "sleep": "^5.1.1",
     "sync-request": "^4.1.0"
   },
   "private": true

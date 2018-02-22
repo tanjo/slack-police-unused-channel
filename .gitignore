@@ -5,3 +5,4 @@ old
 npm-debug.log
 config.json
 *.log
+*.html
