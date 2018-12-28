@@ -25,3 +25,9 @@ npm install
 ```
 node index.js
 ```
+
+bot だけの部屋をリスト化する
+
+```
+node checkbot.js
+```

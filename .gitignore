@@ -6,3 +6,6 @@ npm-debug.log
 config.json
 *.log
 *.html
+result*.txt
+bots.json
+app-users.json
