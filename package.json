@@ -10,7 +10,8 @@
   "author": "tanjo",
   "license": "MIT",
   "dependencies": {
-    "sync-request": "^4.1.0"
+    "request": "^2.88.0",
+    "request-promise": "^4.2.5"
   },
   "private": true
 }

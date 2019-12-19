@@ -1,10 +1,10 @@
 const fs = require('fs');
-const request = require('sync-request');
+const rp = require('request-promise');
 const config = require('./config');
 const sleep = require('./sleep.js');
 
 const main = async () => {
-  fs.writeFileSync('./data.json', request('GET', "https://slack.com/api/channels.list?token=" + config.token + "&exclude_archived=true").getBody().toString());
+  fs.writeFileSync('./data.json', await rp("https://slack.com/api/channels.list?token=" + config.token + "&exclude_archived=true"));
 
   const data = require('./data.json');
 
@@ -23,17 +23,17 @@ const main = async () => {
     const channel = data.channels[i];
     if (channel.is_channel) {
       const url = "https://slack.com/api/channels.history?token=" + config.token + "&channel=" + channel.id;
-      var response = request('GET', url);
+      var response = await rp(url);
 
       if (response.statusCode === 429) {
         console.log('\n[Sleep ' + (response.headers['retry-after'] + 1) + ']');
         await sleep.sleep(1 * (response.headers['retry-after'] + 1));
-        response = request('GET', url);
+        response = await rp(url);
       } else if (response.statusCode >= 300) {
         console.log('\n[Status Code: ' + response.statusCode + ']');
       }
 
-      const body = JSON.parse(response.getBody().toString());
+      const body = JSON.parse(response);
       if (body && body.messages && body.messages.length !== 0) {
         const message = body.messages[0];
         if (message && message.type === "message") {
