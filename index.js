@@ -23,15 +23,15 @@ const main = async () => {
     const channel = data.channels[i];
     if (channel.is_channel) {
       const url = "https://slack.com/api/channels.history?token=" + config.token + "&channel=" + channel.id;
-      var response = await rp(url).catch((err) => {
+      var response = await rp(url).catch(async (err) => {
         switch (err.statusCode) {
           case 429:
-            console.log('\n[Sleep ' + (response.headers['retry-after'] + 1) + ']');
-            await sleep.sleep(1 * (response.headers['retry-after'] + 1));
+            console.log('\n[Sleep ' + (err.response.headers['retry-after'] + 1) + ']');
+            await sleep.sleep(1 * (err.response.headers['retry-after'] + 1));
             response = await rp(url);
             return response;
           default:
-            console.log('\n[Status Code: ' + response.statusCode + ']');
+            console.log('\n[Status Code: ' + err.statusCode + '] ' + err.error);
             return null;
         }
       });
